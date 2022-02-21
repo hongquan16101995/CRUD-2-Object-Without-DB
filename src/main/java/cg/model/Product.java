@@ -1,10 +1,13 @@
 package cg.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Product {
     private int id;
     private String name;
     private double price;
     private String description;
+    private MultipartFile image;
     private Category category;
 
     public Product() {
@@ -18,10 +21,11 @@ public class Product {
         this.category = category;
     }
 
-    public Product(String name, double price, String description, Category category) {
+    public Product(String name, double price, String description, MultipartFile image, Category category) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.image = image;
         this.category = category;
     }
 
@@ -61,6 +65,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public Category getCategory() {

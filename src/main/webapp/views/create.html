@@ -13,7 +13,7 @@
 <h2 th:class="notify" th:if="${message} != null">
     <span th:text="${message}"></span>
 </h2>
-<form id="form" th:action="@{/product}" th:object="${product}" method="post">
+<form id="form" th:action="@{/product}" th:object="${product}" method="post" enctype="multipart/form-data">
     <label hidden>Id:
         <input type="text" name="id" th:field="*{id}">
     </label>
@@ -25,6 +25,9 @@
     </label>
     <label>Description:
         <input type="text" name="description" th:field="*{description}">
+    </label>
+    <label>Image:
+        <input type="file" name="image" th:field="*{image}">
     </label>
     <label>Category:
         <select th:field="*{category}">

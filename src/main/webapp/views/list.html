@@ -24,6 +24,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Image</th>
             <th>Category</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -35,6 +36,7 @@
             <td th:text="${product.getName()}"></td>
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getDescription()}"></td>
+            <td><img th:src="@{${file} + ${product.getImage().getOriginalFilename()}}" alt="Lỗi" src=""></td>
             <td th:text="${product.getCategory().getC_name()}"></td>
             <td><a th:href="@{/product/edit/{id}(id=${product.getId()})}">Edit</a></td>
             <td><a th:href="@{/product/delete/{id}(id=${product.getId()})}"

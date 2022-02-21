@@ -4,17 +4,29 @@ import cg.model.Category;
 import cg.model.Product;
 import cg.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import cg.service.IProductService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/product")
 public class HomeController {
+
+    @Value("${file-upload}")
+    private String fileUpload;
+
+    @Value("${view}")
+    private String view;
 
     @Autowired
     private IProductService productService;
@@ -30,6 +42,7 @@ public class HomeController {
             modelAndView.addObject("message", "No products!");
             modelAndView.addObject("color", "red");
         }
+        modelAndView.addObject("file", view);
         modelAndView.addObject("products", products);
         return modelAndView;
     }
@@ -89,6 +102,15 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("create");
         Category category = categoryService.getCategory(Integer.parseInt(product.getCategory().getC_name()));
         product.setCategory(category);
+
+        MultipartFile multipartFile = product.getImage();
+        String fileName = multipartFile.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(product.getImage().getBytes(), new File(fileUpload + fileName));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         String message = productService.saveProduct(product);
         ArrayList<Product> products = productService.getAllProduct();
         modelAndView.addObject("products", products);

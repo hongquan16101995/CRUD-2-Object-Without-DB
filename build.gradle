@@ -22,6 +22,8 @@ dependencies {
     implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.14.RELEASE'
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.3'
 
+    //upload-file
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 
     compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 }
