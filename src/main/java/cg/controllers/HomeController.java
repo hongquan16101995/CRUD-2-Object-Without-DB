@@ -105,6 +105,7 @@ public class HomeController {
 
         MultipartFile multipartFile = product.getImage();
         String fileName = multipartFile.getOriginalFilename();
+        // product.setLinkImage = view + multipartFile.getOriginalFilename();  <==> image\ava.jpg
         try {
             FileCopyUtils.copy(product.getImage().getBytes(), new File(fileUpload + fileName));
         } catch (IOException ex) {

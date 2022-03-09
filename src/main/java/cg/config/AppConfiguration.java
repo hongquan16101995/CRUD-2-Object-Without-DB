@@ -24,7 +24,7 @@ import cg.service.impl.ProductServiceImpl;
 @Configuration
 @EnableWebMvc
 @ComponentScan("cg.controllers")
-@PropertySource("classpath:app.properties")
+@PropertySource("classpath:application.properties")
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
